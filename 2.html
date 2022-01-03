@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)http://203.64.84.113/STUpload/StFiles/69/20170719-2143/104513137/1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=Big5">
+
+	
+<title>填寫表單</title>
+    <script src="XMLProcessor.js"></script>
+    <script src="HTTP_IO.js"></script>
+
+</head>
+<body style="background-color:	#7AB8CC;">
+<form id="mi123" name="F1"  method="POST">
+<h1 align="center">基本資料調查</h1>
+<table align="center" style="border:8px #003D79 groove;" cellpadding="10" border="1">
+<tbody><tr><td rowspan="5" align="center">
+<p align="center"><img border="0" src="./img/1.jpg" width="200" height="200" align="left&quot;"></p>
+</td>
+<td>
+姓名 :<input type="text" name="name"><br>
+</td></tr><tr>
+<td>
+性別 :<input type="radio" name="girlorboy" value="girl">女
+      <input type="radio" name="girlorboy" value="boy">男<br>
+</td></tr><tr>
+<td>
+生日 :年<input type="text" maxlength="4" size="8" name="year">
+	  月<select name="month">
+       <option value="00">請選擇</option>
+       <option value="01">01</option>
+       <option value="02">02</option>
+       <option value="03">03</option>
+       <option value="04">04</option>
+       <option value="05">05</option>
+       <option value="06">06</option>
+       <option value="07">07</option>
+       <option value="08">08</option>
+       <option value="09">09</option>
+       <option value="10">10</option>
+       <option value="11">11</option>
+       <option value="12">12</option>
+</select>
+      日<select name="day">
+       <option value="00">請選擇</option>
+       <option value="01">01</option>
+       <option value="02">02</option>
+       <option value="03">03</option>
+       <option value="04">04</option>
+       <option value="05">05</option>
+       <option value="06">06</option>
+       <option value="07">07</option>
+       <option value="08">08</option>
+       <option value="09">09</option>
+       <option value="10">10</option>
+       <option value="11">11</option>
+       <option value="12">12</option>
+       <option value="13">13</option>
+       <option value="14">14</option>
+       <option value="15">15</option>
+       <option value="16">16</option>
+       <option value="17">17</option>
+       <option value="18">18</option>
+       <option value="19">19</option>
+       <option value="20">20</option>
+       <option value="21">21</option>
+       <option value="22">22</option>
+       <option value="23">23</option>
+       <option value="24">24</option>
+       <option value="25">25</option>
+       <option value="26">26</option>
+       <option value="27">27</option>
+       <option value="28">28</option>
+       <option value="29">29</option>
+       <option value="30">30</option>
+       <option value="31">31</option>
+</select><br>
+</td></tr><tr>
+<td>
+居住城市 :<select name="city">
+        <option value="empty">請選擇</option>
+        <option value="hualien">花蓮</option>
+		<option value="taipei">台北</option>
+		<option value="taichung">台中</option>
+		<option value="kaohsiung">高雄</option>
+		<option value="tainan">台南</option>
+		</select><br>
+</td></tr><tr>
+<td>
+興趣(可複選) :<input type="checkbox" name="hobby" value="tv">看電視
+              <input type="checkbox" name="hobby" value="read">閱讀
+			  <input type="checkbox" name="hobby" value="game">打電動
+</td></tr><tr>
+<td colspan="2">自我介紹(最多25個字):<br>
+<textarea name="comments" rows="10" cols="90" value="word"></textarea>
+</td>
+</tr></tbody></table>
+<p align="center">&nbsp;</p>
+<p align="center"><input type="button" value="送出表單" onclick="checkdata();"></p>
+
+</form>
+
+<script>
+    function checkdata()
+	{ 
+	    if(document.F1.name.value=='') //文件.表單名稱.控制項的名稱.存控制項的變數
+		{   alert('請輸入姓名');
+		    return(false);
+		}
+		 if(document.F1.month.value == "00" || document.F1.day.value == "00")
+        {   alert("未輸入完整生日日期");
+		    return(false);
+        }
+		if(document.F1.city.value=="empty")
+		{   alert('請輸入居住城市');
+		    return(false);
+		}
+		var str=document.F1.comments.value;
+		
+		if(str.length ==0 ||str.length >25) 
+		{   alert('請重新輸入自我介紹');
+		    return(false);
+		}
+		var xmlStr;
+		xmlStr = formInputsToXML('mi123');
+        //HTTPPostData("Post.aspx?id=cakeOrder", xmlStr);
+		HTTPPostData("http://203.64.84.214:8003/httptest/Post.aspx?id=mi123", xmlStr);
+	}
+</script>
+
+
+</body></html>
